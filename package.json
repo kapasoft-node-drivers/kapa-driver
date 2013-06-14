@@ -1,0 +1,20 @@
+{
+  "name": "kapa-driver",
+  "version": "0.0.0",
+  "description": "Driver for kapasoft.com view",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test",
+    "start": "eval '$(./env.sh)'; node ./scripts/flush-redis; node ./scripts/startup-cache; forever start app.js"
+  },
+  "dependencies": {
+      "express": "3.1.0",
+      "redis": "0.7.2",
+      "socket.io": "*",
+      "socket.io-client": "*",
+      "sugar":"*"
+  },
+  "repository": "",
+  "author": "Margots Kapacs",
+  "license": "BSD"
+}
