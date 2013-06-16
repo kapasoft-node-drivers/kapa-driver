@@ -1,8 +1,9 @@
-//var Review = require('../lib/review')
-//    , Inquiry = require('../lib/inquiry')
-//    , ContactUs = require('../lib/contactUs')
+
+require('coffee-script');
 var sugar = require('sugar')
-    , io = require('socket.io');
+    , io = require('socket.io')
+//    , Domain = require('domain/domain')
+    , Contact = require('domain/contact');
 
 
 exports.initialize = function(server) {
@@ -64,7 +65,14 @@ exports.initialize = function(server) {
                     console.log('posted inquiry');
                     break;
                 case 'postContactUs':
-                    console.log('posted Contact Us');
+                    var contact = new Contact({name:message.name, email:message.email,phone:'5555555555', message: message.subject + '\n' + message.message });
+                    contact.save(function(e){
+                        if(e){
+                            console.log('Error saving contact: ' + e.message);
+                        }else{
+                            console.log('contact saved successfully...');
+                        }
+                    });
                     break;
                 case 'getTestimonial':
                     console.log('get testimonials');
